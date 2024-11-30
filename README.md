@@ -63,8 +63,8 @@ N/A
 
 #### Environment secrets
 
-- `AWS_ACCOUNT_ID`: for test workflow
-- `IAM_ROLE_NAME`: for test workflow
+- `AWS_ACCOUNT_ID`: see [tmknom/internal-aws-resources (private)][internal] for more details
+- `IAM_ROLE_NAME`: see [tmknom/internal-aws-resources (private)][internal] for more details
 
 ## Release notes
 
@@ -75,4 +75,5 @@ See [GitHub Releases][releases].
 Apache 2 Licensed. See [LICENSE](LICENSE) for full details.
 
 [aws-actions]: https://github.com/aws-actions/configure-aws-credentials
+[internal]: https://github.com/tmknom/internal-aws-resources
 [releases]: https://github.com/tmknom/template-composite-action/releases
