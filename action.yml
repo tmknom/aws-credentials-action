@@ -55,3 +55,16 @@ runs:
         set -x
         echo "name=$(aws sts get-caller-identity --query Arn --output text | cut -d/ -f3)" >> "${GITHUB_OUTPUT}"
       shell: bash
+
+    - name: Add job summary
+      env:
+        SESSION_NAME: ${{ steps.session.outputs.name }}
+        CLOUDTRAIL_URL: https://console.aws.amazon.com/cloudtrail/home#/events
+      run: |
+        set -x
+        {
+          echo "### ✅ Authenticated with AWS"
+          echo "#### CloudTrail URL"
+          echo "- ${CLOUDTRAIL_URL}?Username=${SESSION_NAME}"
+        } >> "${GITHUB_STEP_SUMMARY}"
+      shell: bash
