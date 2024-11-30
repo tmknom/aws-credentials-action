@@ -45,6 +45,23 @@ N/A
 
 N/A
 
+## Repository settings
+
+### Environments
+
+- Name: `least`
+
+#### Deployment protection rules
+
+- Required reviewers: `Enabled`
+    - Prevent self-review: `Disabled`
+- Allow administrators to bypass configured protection rules: `Disabled`
+
+#### Environment secrets
+
+- `AWS_ACCOUNT_ID`: for test workflow
+- `IAM_ROLE_NAME`: for test workflow
+
 ## Release notes
 
 See [GitHub Releases][releases].
