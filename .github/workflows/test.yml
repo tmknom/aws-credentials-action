@@ -19,30 +19,24 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    environment: least
     permissions:
       contents: read
+      id-token: write
     steps:
       - name: Checkout
         uses: tmknom/checkout-action@v1
 
-      - name: Setup
-        run: |
-          set -x
-          echo "Setup"
-
       - name: Exercise
         id: exercise
         uses: ./
+        with:
+          iam-role-name: ${{ secrets.IAM_ROLE_NAME }}
+          aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+          aws-region: ap-northeast-1
 
       - name: Verify
-        env:
-          OUTCOME: ${{ steps.exercise.outcome }}
         run: |
           set -x
-          test "${OUTCOME}" = "success"
-
-      - name: Teardown
-        if: ${{ always() }}
-        run: |
-          set -x
-          echo "Teardown"
+          actual="$(aws sts get-caller-identity --query Arn --output text | cut -d/ -f3)"
+          test "${actual}" = "aws-credentials-action-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
