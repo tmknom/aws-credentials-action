@@ -59,12 +59,13 @@ runs:
     - name: Add job summary
       env:
         SESSION_NAME: ${{ steps.session.outputs.name }}
-        CLOUDTRAIL_URL: https://console.aws.amazon.com/cloudtrail/home#/events
       run: |
         set -x
         {
           echo "### ✅ Authenticated with AWS"
-          echo "#### CloudTrail URL"
-          echo "- ${CLOUDTRAIL_URL}?Username=${SESSION_NAME}"
+          echo "#### CloudTrail"
+          echo "- **URL**: https://console.aws.amazon.com/cloudtrail/home#/events?Username=${SESSION_NAME}"
+          echo "#### User Identity"
+          echo "- **Session Name**: \`${SESSION_NAME}\`"
         } >> "${GITHUB_STEP_SUMMARY}"
       shell: bash
