@@ -37,7 +37,9 @@ This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions
 
 ## Permissions
 
-N/A
+| Scope    | Access |
+| :------- | :----- |
+| id-token | write  |
 
 ## FAQ
 
