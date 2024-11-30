@@ -29,7 +29,9 @@ This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions
 
 ## Outputs
 
-N/A
+| Name | Description |
+| :--- | :---------- |
+| session-name | Role session name. |
 
 <!-- actdocs end -->
 

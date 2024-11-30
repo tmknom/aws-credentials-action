@@ -25,6 +25,11 @@ inputs:
     required: false
     description: The region to use.
 
+outputs:
+  session-name:
+    value: ${{ steps.session.outputs.name }}
+    description: Role session name.
+
 runs:
   using: composite
 
@@ -43,3 +48,10 @@ runs:
         role-session-name: ${{ steps.repo.outputs.name }}-${{ github.run_id }}-${{ github.run_attempt }}
         aws-region: ${{ inputs.aws-region }}
         mask-aws-account-id: true
+
+    - name: Output session name
+      id: session
+      run: |
+        set -x
+        echo "name=$(aws sts get-caller-identity --query Arn --output text | cut -d/ -f3)" >> "${GITHUB_OUTPUT}"
+      shell: bash
