@@ -74,4 +74,5 @@ See [GitHub Releases][releases].
 
 Apache 2 Licensed. See [LICENSE](LICENSE) for full details.
 
+[aws-actions]: https://github.com/aws-actions/configure-aws-credentials
 [releases]: https://github.com/tmknom/template-composite-action/releases
