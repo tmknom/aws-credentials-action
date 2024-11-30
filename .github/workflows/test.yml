@@ -36,7 +36,8 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Verify
+        env:
+          SESSION_NAME: ${{ steps.exercise.outputs.session-name }}
         run: |
           set -x
-          actual="$(aws sts get-caller-identity --query Arn --output text | cut -d/ -f3)"
-          test "${actual}" = "aws-credentials-action-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          test "${SESSION_NAME}" = "aws-credentials-action-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
