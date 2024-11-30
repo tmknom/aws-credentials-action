@@ -1,23 +1,45 @@
-name: Rename me
+name: AWS Credentials
 description: |
-  Template repository for creating Composite Action with GitHub Actions.
+  This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions].
 
   ## Usage
 
-  Write usage for your Composite Action.
-
   ```yaml
     steps:
-      - name: Template
-        uses: tmknom/template-composite-action@v0
+      - name: AWS Credentials
+        uses: tmknom/aws-credentials-action@v0
+        with:
+          iam-role-name: example-oidc-role
+          aws-account-id: 123456789012
   ```
+
+inputs:
+  iam-role-name:
+    required: true
+    description: The name of the role to assume.
+  aws-account-id:
+    required: true
+    description: The number used to identify the Amazon Web Services account.
+  aws-region:
+    default: us-east-1
+    required: false
+    description: The region to use.
 
 runs:
   using: composite
 
   steps:
-    - name: Run
-      shell: bash
+    - name: Describe repository name
+      id: repo
       run: |
         set -x
-        echo "Write steps"
+        echo "name=${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}" >> "${GITHUB_OUTPUT}"
+      shell: bash
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
+      with:
+        role-to-assume: arn:aws:iam::${{ inputs.aws-account-id }}:role/${{ inputs.iam-role-name }}
+        role-session-name: ${{ steps.repo.outputs.name }}-${{ github.run_id }}-${{ github.run_attempt }}
+        aws-region: ${{ inputs.aws-region }}
+        mask-aws-account-id: true

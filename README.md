@@ -1,26 +1,31 @@
-# template-composite-action
+# aws-credentials-action
 
-Template repository for Composite Action.
+Authenticate with AWS using OpenID Connect and set credentials as environment variables.
 
 <!-- actdocs start -->
 
 ## Description
 
-Template repository for creating Composite Action with GitHub Actions.
+This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions].
 
 ## Usage
 
-Write usage for your Composite Action.
-
 ```yaml
   steps:
-    - name: Template
-      uses: tmknom/template-composite-action@v0
+    - name: AWS Credentials
+      uses: tmknom/aws-credentials-action@v0
+      with:
+        iam-role-name: example-oidc-role
+        aws-account-id: 123456789012
 ```
 
 ## Inputs
 
-N/A
+| Name | Description | Default | Required |
+| :--- | :---------- | :------ | :------: |
+| aws-account-id | The number used to identify the Amazon Web Services account. | n/a | yes |
+| iam-role-name | The name of the role to assume. | n/a | yes |
+| aws-region | The region to use. | `us-east-1` | no |
 
 ## Outputs
 
