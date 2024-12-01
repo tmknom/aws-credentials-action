@@ -9,17 +9,17 @@ description: |
       - name: AWS Credentials
         uses: tmknom/aws-credentials-action@v0
         with:
-          iam-role-name: example-oidc-role
           aws-account-id: 123456789012
+          iam-role-name: example-oidc-role
   ```
 
 inputs:
-  iam-role-name:
-    required: true
-    description: The name of the role to assume.
   aws-account-id:
     required: true
     description: The number used to identify the Amazon Web Services account.
+  iam-role-name:
+    required: true
+    description: The name of the role to assume.
   aws-region:
     default: us-east-1
     required: false
