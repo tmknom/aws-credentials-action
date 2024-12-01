@@ -63,6 +63,8 @@ runs:
     - name: Add job summary
       env:
         SESSION_NAME: ${{ steps.session.outputs.name }}
+        AWS_ACCOUNT_ID: ${{ inputs.aws-account-id }}
+        MASK_AWS_ACCOUNT_ID: ${{ inputs.mask-aws-account-id }}
       run: |
         set -x
         {
@@ -72,4 +74,8 @@ runs:
           echo "#### User Identity"
           echo "- **Session Name**: \`${SESSION_NAME}\`"
         } >> "${GITHUB_STEP_SUMMARY}"
+
+        if [[ "${MASK_AWS_ACCOUNT_ID}" == "false" ]]; then
+          echo "- **AWS Account ID**: \`${AWS_ACCOUNT_ID}\`" >> "${GITHUB_STEP_SUMMARY}"
+        fi
       shell: bash
