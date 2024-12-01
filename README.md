@@ -15,8 +15,8 @@ This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions
     - name: AWS Credentials
       uses: tmknom/aws-credentials-action@v0
       with:
-        iam-role-name: example-oidc-role
         aws-account-id: 123456789012
+        iam-role-name: example-oidc-role
 ```
 
 ## Inputs
