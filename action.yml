@@ -38,6 +38,16 @@ runs:
   using: composite
 
   steps:
+    - name: Mask inputs
+      env:
+        AWS_ACCOUNT_ID: ${{ inputs.aws-account-id }}
+        MASK_AWS_ACCOUNT_ID: ${{ inputs.mask-aws-account-id }}
+      run: |
+        if [[ "${MASK_AWS_ACCOUNT_ID}" != "false" ]]; then
+          echo "::add-mask::${AWS_ACCOUNT_ID}"
+        fi
+      shell: bash
+
     - name: Describe repository name
       id: repo
       run: |
