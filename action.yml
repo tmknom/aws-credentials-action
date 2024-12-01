@@ -84,6 +84,8 @@ runs:
         SESSION_NAME: ${{ steps.session.outputs.name }}
         AWS_ACCOUNT_ID: ${{ inputs.aws-account-id }}
         MASK_AWS_ACCOUNT_ID: ${{ inputs.mask-aws-account-id }}
+        IAM_ROLE_NAME: ${{ inputs.iam-role-name }}
+        MASK_IAM_ROLE_NAME: ${{ inputs.mask-iam-role-name }}
       run: |
         set -x
         {
@@ -96,5 +98,9 @@ runs:
 
         if [[ "${MASK_AWS_ACCOUNT_ID}" == "false" ]]; then
           echo "- **AWS Account ID**: \`${AWS_ACCOUNT_ID}\`" >> "${GITHUB_STEP_SUMMARY}"
+        fi
+
+        if [[ "${MASK_IAM_ROLE_NAME}" == "false" ]]; then
+          echo "- **IAM Role Name**: \`${IAM_ROLE_NAME}\`" >> "${GITHUB_STEP_SUMMARY}"
         fi
       shell: bash
