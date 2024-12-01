@@ -32,6 +32,10 @@ inputs:
     default: true
     required: false
     description: Whether to mask the IAM role name for these credentials as a secret value.
+  duration-seconds:
+    default: 3600
+    required: false
+    description: The duration of the session in seconds.
 
 outputs:
   session-name:
@@ -71,6 +75,7 @@ runs:
         role-session-name: ${{ steps.repo.outputs.name }}-${{ github.run_id }}-${{ github.run_attempt }}
         aws-region: ${{ inputs.aws-region }}
         mask-aws-account-id: ${{ inputs.mask-aws-account-id }}
+        role-duration-seconds: ${{ inputs.duration-seconds }}
 
     - name: Output session name
       id: session
