@@ -28,6 +28,10 @@ inputs:
     default: true
     required: false
     description: Whether to mask the AWS account ID for these credentials as a secret value.
+  mask-iam-role-name:
+    default: true
+    required: false
+    description: Whether to mask the IAM role name for these credentials as a secret value.
 
 outputs:
   session-name:
@@ -42,9 +46,14 @@ runs:
       env:
         AWS_ACCOUNT_ID: ${{ inputs.aws-account-id }}
         MASK_AWS_ACCOUNT_ID: ${{ inputs.mask-aws-account-id }}
+        IAM_ROLE_NAME: ${{ inputs.iam-role-name }}
+        MASK_IAM_ROLE_NAME: ${{ inputs.mask-iam-role-name }}
       run: |
         if [[ "${MASK_AWS_ACCOUNT_ID}" != "false" ]]; then
           echo "::add-mask::${AWS_ACCOUNT_ID}"
+        fi
+        if [[ "${MASK_IAM_ROLE_NAME}" != "false" ]]; then
+          echo "::add-mask::${IAM_ROLE_NAME}"
         fi
       shell: bash
 
