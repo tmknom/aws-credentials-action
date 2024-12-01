@@ -26,6 +26,7 @@ This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions
 | aws-account-id | The number used to identify the Amazon Web Services account. | n/a | yes |
 | iam-role-name | The name of the role to assume. | n/a | yes |
 | aws-region | The region to use. | `us-east-1` | no |
+| mask-aws-account-id | Whether to mask the AWS account ID for these credentials as a secret value. | `true` | no |
 
 ## Outputs
 

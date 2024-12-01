@@ -24,6 +24,10 @@ inputs:
     default: us-east-1
     required: false
     description: The region to use.
+  mask-aws-account-id:
+    default: true
+    required: false
+    description: Whether to mask the AWS account ID for these credentials as a secret value.
 
 outputs:
   session-name:
@@ -47,7 +51,7 @@ runs:
         role-to-assume: arn:aws:iam::${{ inputs.aws-account-id }}:role/${{ inputs.iam-role-name }}
         role-session-name: ${{ steps.repo.outputs.name }}-${{ github.run_id }}-${{ github.run_attempt }}
         aws-region: ${{ inputs.aws-region }}
-        mask-aws-account-id: true
+        mask-aws-account-id: ${{ inputs.mask-aws-account-id }}
 
     - name: Output session name
       id: session
