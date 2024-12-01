@@ -27,6 +27,7 @@ This action is a wrapper for [aws-actions/configure-aws-credentials][aws-actions
 | iam-role-name | The name of the role to assume. | n/a | yes |
 | aws-region | The region to use. | `us-east-1` | no |
 | mask-aws-account-id | Whether to mask the AWS account ID for these credentials as a secret value. | `true` | no |
+| mask-iam-role-name | Whether to mask the IAM role name for these credentials as a secret value. | `true` | no |
 
 ## Outputs
 
