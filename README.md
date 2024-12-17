@@ -73,10 +73,6 @@ N/A
 
 See [GitHub Releases][releases].
 
-## License
-
-Apache 2 Licensed. See [LICENSE](LICENSE) for full details.
-
 [aws-actions]: https://github.com/aws-actions/configure-aws-credentials
 [internal]: https://github.com/tmknom/internal-aws-resources
 [releases]: https://github.com/tmknom/aws-credentials-action/releases
