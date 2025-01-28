@@ -64,10 +64,12 @@ N/A
     - Prevent self-review: `Disabled`
 - Allow administrators to bypass configured protection rules: `Disabled`
 
-#### Environment secrets
+### Repository secrets
 
 - `AWS_ACCOUNT_ID`: see [tmknom/internal-aws-resources (private)][internal] for more details
 - `IAM_ROLE_NAME`: see [tmknom/internal-aws-resources (private)][internal] for more details
+
+The same settings for repository secrets apply to **Dependabot secrets**.
 
 ## Release notes
 
